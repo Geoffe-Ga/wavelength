@@ -1,0 +1,54 @@
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+lint.extend-select = ["E", "F", "W", "I", "D", "UP", "B", "SIM"]
+lint.ignore = ["D203", "D213"]
+fix = true
+
+[tool.pytest.ini_options]
+addopts = "-q --strict-markers --disable-warnings --maxfail=1 --cov=."
+testpaths = ["backend/tests"]
+python_files = "test_*.py"
+pythonpath = ["."]
+
+
+[tool.coverage.run]
+branch = true
+source = ["."]
+omit = ["backend/tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+[tool.mypy]
+python_version = "3.13"
+
+packages = ["backend"]
+mypy_path = ["backend"]
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+no_implicit_optional = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unreachable = true
+strict_equality = true
+show_error_codes = true
+pretty = true
+# You'll want to add per-module "ignores" if they don't have types.
+ignore_missing_imports = false
+# e.g. numpy doesn't supply typed calls. So uncomment this if you're using it.
+#[tool.mypy.numpy.*]
+#ignore_missing_imports = true
