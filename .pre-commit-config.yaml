@@ -30,3 +30,12 @@ repos:
     hooks:
       - id: mypy
         args: ["--python-version=3.13"]
+
+  - repo: local
+    hooks:
+      - id: swiftlint
+        name: SwiftLint
+        entry: swiftlint
+        language: system
+        types: [swift]
+        additional_dependencies: []

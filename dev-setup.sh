@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Install SwiftLint
+if ! command -v swiftlint &> /dev/null
+then
+    echo "Installing SwiftLint via Homebrew..."
+    brew install swiftlint
+fi
+
 echo "🔧 Creating virtual environment..."
 python3 -m venv .venv
 

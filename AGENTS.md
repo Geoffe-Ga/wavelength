@@ -62,6 +62,26 @@ Agents working on this project must abide by the following operating principles:
 
     - Checking network requests for accurate backend interaction
 
-6. **Final Note on Workflow**
+6. **MVP Scope Discipline**
+
+  - Do not introduce:
+
+    - Authentication
+
+    - Push notifications
+
+    - On-device data persistence
+
+    - Multiple language support
+
+    - Backend data storage
+
+    Unless explicitly requested.
+
+*This is a read-only, ephemeral, tap-to-interact MVP. Stay light.*
+
+7. **Respect the Archetypal Wavelength**
+
+  - Restoration leads to Rising.
 
   - Agents are expected to work in cycles: test → think → implement → test → think → refine → repeat (until all green).

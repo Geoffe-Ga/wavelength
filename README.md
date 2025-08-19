@@ -7,7 +7,7 @@ This app lets you horizontally scroll through the phases of the Archetypal Wavel
 - Horizontal Scrolling: Swipe through the phases of the Wavelength, with a continuous background image to keep the flow.
 - Phase Details: Tap a phase to see a quick pop-up of self-care strategies tailored to that stage.
 - FastAPI Backend: Powered by a FastAPI server that delivers the APTITUDE wisdom to your watch in real time.
-  
+
 ## 🛠️ Setup
 
 ```bash

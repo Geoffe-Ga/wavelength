@@ -137,6 +137,14 @@ $RECYCLE.BIN/
 *~
 
 # Logs and databases
-*.log
 *.sqlite3
 *.db
+
+# Swift
+/.build
+/Packages
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc

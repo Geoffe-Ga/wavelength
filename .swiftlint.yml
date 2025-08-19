@@ -1,0 +1,42 @@
+# .swiftlint.yml
+
+included:
+  - frontend/
+
+excluded:
+  - Carthage
+  - Pods
+  - build
+  - .build
+  - DerivedData
+
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - fatal_error_message
+  - first_where
+  - force_unwrapping
+  - unowned_variable_capture
+
+disabled_rules:
+  - line_length
+  - trailing_comma
+  - identifier_name
+  - type_name
+
+# Customize thresholds
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+function_body_length:
+  warning: 60
+  error: 100
+
+type_body_length:
+  warning: 200
+  error: 350
+
+# Customize style
+trailing_whitespace:
+  ignores_empty_lines: true
