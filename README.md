@@ -11,7 +11,7 @@ This app lets you horizontally scroll through the phases of the Archetypal Wavel
 ## 🛠️ Setup
 
 ```bash
-git clone https://github.com/Geoffe-Ga/py-agent-coding-template.git
-cd py-agent-coding-template
+git clone https://github.com/Geoffe-Ga/wavelength.git
+cd wavelength
 chmod +x dev-setup.sh
 ./dev-setup.sh
