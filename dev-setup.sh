@@ -15,7 +15,7 @@ source .venv/bin/activate
 
 echo "📚 Installing development dependencies..."
 pip install --upgrade pip
-pip install -r backend/requirements.txt
+pip install -r backend/requirements-dev.txt
 
 echo "✅ Installing pre-commit hooks..."
 pre-commit install
