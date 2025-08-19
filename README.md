@@ -1,20 +1,13 @@
-# 🤖 AI-Ready Python Template
+## Overview
 
-This is a streamlined, batteries-included Python template designed for coding *with* AI assistants.
+This app lets you horizontally scroll through the phases of the Archetypal Wavelength, with each phase offering a quick glimpse of helpful self-care strategies. Tap on any phase to reveal a little text box of wisdom and guidance, and then swipe to the next phase whenever you’re ready. It’s like having a pocket guide to your own well-being journey.
 
-Whether you're pair-programming with ChatGPT, GitHub Copilot, Cursor, Claude, or any custom agent, this repo scaffolds your environment with best practices—so you and your coding companion can move fast *without* breaking things.
+## Features
 
-## ✨ Features
-
-- **Agent-friendly structure** – Optimized for clarity and fast comprehension
-- **Static typing** – [`mypy`](https://mypy-lang.org/) pre-configured
-- **Formatting & linting** – [`black`](https://black.readthedocs.io/), [`isort`](https://pycqa.github.io/isort/), and [`ruff`](https://docs.astral.sh/ruff/)
-- **Testing** – [`pytest`](https://docs.pytest.org/) support with 90%+ coverage expectations
-- **Pre-commit hooks** – Enforce quality *before* you push
-- **Minimal magic** – No weird abstractions or opinionated frameworks
-- **Setup Scripts** - Tell your agent how to configure its environment to work on your project
-- **AGENTS.md** - Canonical file to tell your Agent assistant how to interact with your codebase. This one uses Test Driven Development frameworks and explicit best practice instructions that minimize errors and maximize "one-shot" potential.
-
+- Horizontal Scrolling: Swipe through the phases of the Wavelength, with a continuous background image to keep the flow.
+- Phase Details: Tap a phase to see a quick pop-up of self-care strategies tailored to that stage.
+- FastAPI Backend: Powered by a FastAPI server that delivers the APTITUDE wisdom to your watch in real time.
+  
 ## 🛠️ Setup
 
 ```bash
