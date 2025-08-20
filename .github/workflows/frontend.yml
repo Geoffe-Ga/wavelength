@@ -1,28 +1,107 @@
-name: Build Watch App
+name: Frontend (watchOS) CI
 
 on:
   push:
+    branches: [ main ]
     paths:
       - 'frontend/**'
-    branches:
-      - main
+      - '.github/workflows/frontend.yml'
   pull_request:
     paths:
       - 'frontend/**'
+      - '.github/workflows/frontend.yml'
 
 jobs:
-  build:
-    runs-on: macos-latest
+  lint-and-build:
+    runs-on: macos-15
+    env:
+      PROJECT_PATH: frontend/WavelengthWatchApp.xcodeproj
+      SCHEME: WavelengthWatchApp Watch App
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install SwiftLint
-        run: brew install swiftlint
+      # Prefer selecting a specific, preinstalled Xcode over third-party setup actions.
+      - name: Select Xcode (16.0 if available, else default)
+        run: |
+          set -euo pipefail
+          if [ -d "/Applications/Xcode_16.0.app" ]; then
+            sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
+            echo "Selected Xcode_16.0"
+          else
+            sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+            echo "Selected default Xcode"
+          fi
+          xcodebuild -version
+          xcrun simctl list runtimes
 
-      - name: Run SwiftLint
-        run: swiftlint --strict --quiet
-      - name: Build Watch App
-        run: swift build
-        working-directory: frontend
+      - name: Set up Python (for pre-commit)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install SwiftLint and pre-commit
+        run: |
+          brew install swiftlint
+          pip install --upgrade pre-commit
+
+      # Runs your full pre-commit suite (Python + SwiftLint). Make sure your
+      # .pre-commit-config.yaml uses: `swiftlint lint --strict` and points at the same config CI uses.
+      - name: Run pre-commit (strict)
+        run: pre-commit run --all-files --show-diff-on-failure
+
+      - name: Verify shared scheme exists
+        run: |
+          set -euo pipefail
+          xcodebuild -list -project "$PROJECT_PATH"
+          if [ ! -f "$PROJECT_PATH/xcshareddata/xcschemes/${SCHEME}.xcscheme" ]; then
+            echo "::warning::Shared scheme '${SCHEME}' not found at '$PROJECT_PATH/xcshareddata/xcschemes/'. Open Xcode → Product → Scheme → Manage Schemes… and check 'Shared'."
+          fi
+
+      - name: Show available watchOS destinations
+        run: |
+          xcodebuild -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -showdestinations
+
+      # Build the watch-only app for the watchOS Simulator in Debug.
+      - name: Build (Debug)
+        env:
+          NSUnbufferedIO: "YES"
+        run: |
+          set -euo pipefail
+          set -o pipefail
+          xcodebuild \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Debug \
+            -sdk watchsimulator \
+            -destination "generic/platform=watchOS Simulator" \
+            CODE_SIGNING_ALLOWED=NO \
+            clean build | tee build-debug.log
+
+      # Build the watch-only app for the watchOS Simulator in Release.
+      - name: Build (Release)
+        env:
+          NSUnbufferedIO: "YES"
+        run: |
+          set -euo pipefail
+          set -o pipefail
+          xcodebuild \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -sdk watchsimulator \
+            -destination "generic/platform=watchOS Simulator" \
+            CODE_SIGNING_ALLOWED=NO \
+            clean build | tee build-release.log
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: watchos-build-logs
+          path: |
+            build-debug.log
+            build-release.log
