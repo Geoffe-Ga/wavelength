@@ -67,33 +67,26 @@ jobs:
 
       # Build the watch-only app for the watchOS Simulator in Debug.
       - name: Build (Debug)
-        env:
-          NSUnbufferedIO: "YES"
         run: |
           set -euo pipefail
-          set -o pipefail
           xcodebuild \
-            -project "$PROJECT_PATH" \
-            -scheme "$SCHEME" \
+            -project frontend/WavelengthWatchApp.xcodeproj \
+            -scheme "WavelengthWatchApp Watch App" \
             -configuration Debug \
-            -sdk watchsimulator \
-            -destination "generic/platform=watchOS Simulator" \
+            -sdk watchos \
+            -destination "generic/platform=watchOS" \
             CODE_SIGNING_ALLOWED=NO \
             clean build | tee build-debug.log
 
-      # Build the watch-only app for the watchOS Simulator in Release.
       - name: Build (Release)
-        env:
-          NSUnbufferedIO: "YES"
         run: |
           set -euo pipefail
-          set -o pipefail
           xcodebuild \
-            -project "$PROJECT_PATH" \
-            -scheme "$SCHEME" \
+            -project frontend/WavelengthWatchApp.xcodeproj \
+            -scheme "WavelengthWatchApp Watch App" \
             -configuration Release \
-            -sdk watchsimulator \
-            -destination "generic/platform=watchOS Simulator" \
+            -sdk watchos \
+            -destination "generic/platform=watchOS" \
             CODE_SIGNING_ALLOWED=NO \
             clean build | tee build-release.log
 
