@@ -13,7 +13,7 @@ on:
 
 jobs:
   lint-and-build:
-    runs-on: macos-15
+    runs-on: macos-14
     env:
       PROJECT_PATH: frontend/WavelengthWatchApp.xcodeproj
       SCHEME: WavelengthWatchApp Watch App
@@ -22,17 +22,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Prefer selecting a specific, preinstalled Xcode over third-party setup actions.
-      - name: Select Xcode (16.0 if available, else default)
+      # Use the latest Xcode with a preinstalled watchOS SDK (15.4 on macOS-14).
+      - name: Select Xcode 15.4
         run: |
           set -euo pipefail
-          if [ -d "/Applications/Xcode_16.0.app" ]; then
-            sudo xcode-select -s /Applications/Xcode_16.0.app/Contents/Developer
-            echo "Selected Xcode_16.0"
-          else
-            sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-            echo "Selected default Xcode"
-          fi
+          sudo xcode-select -s /Applications/Xcode_15.4.app/Contents/Developer
           xcodebuild -version
           xcrun simctl list runtimes
 
@@ -73,8 +67,8 @@ jobs:
             -project frontend/WavelengthWatchApp.xcodeproj \
             -scheme "WavelengthWatchApp Watch App" \
             -configuration Debug \
-            -sdk watchos \
-            -destination "generic/platform=watchOS" \
+            -sdk watchsimulator \
+            -destination "generic/platform=watchOS Simulator" \
             CODE_SIGNING_ALLOWED=NO \
             clean build | tee build-debug.log
 
@@ -85,8 +79,8 @@ jobs:
             -project frontend/WavelengthWatchApp.xcodeproj \
             -scheme "WavelengthWatchApp Watch App" \
             -configuration Release \
-            -sdk watchos \
-            -destination "generic/platform=watchOS" \
+            -sdk watchsimulator \
+            -destination "generic/platform=watchOS Simulator" \
             CODE_SIGNING_ALLOWED=NO \
             clean build | tee build-release.log
 
