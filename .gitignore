@@ -148,3 +148,20 @@ DerivedData/
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
+
+# Xcode noise not covered by xcuserdata
+**/*.xcuserstate
+**/*.xccheckout
+**/*.xcscmblueprint
+*.xcarchive
+*.xcresult
+*.moved-aside
+
+# Swift/SwiftPM caches in nested folders (e.g., frontend/.build)
+**/.build/
+**/Packages/
+
+# Linters, env, and local config
+.ruff_cache/
+.env
+.env.*
