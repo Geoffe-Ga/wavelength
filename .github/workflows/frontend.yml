@@ -18,6 +18,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint --strict --quiet
+
       - name: Install CocoaPods
         run: |
           brew install cocoapods || true
@@ -27,8 +33,6 @@ jobs:
       - name: Build Watch App
         run: |
           xcodebuild -scheme WavelengthWatchApp \
-                     -sdk watchos \
-                     -configuration Debug \
-                     -destination 'platform=watchOS Simulator,name=Apple Watch Series 9 (45mm)' \
+                     -destination 'generic/platform=watchOS Simulator' \
                      build
         working-directory: frontend

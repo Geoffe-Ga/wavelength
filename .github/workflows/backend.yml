@@ -41,7 +41,7 @@ jobs:
 
       - name: Lint with Ruff
         run: |
-          ruff backend
+          ruff check backend
 
       - name: Type check with MyPy
         run: |
