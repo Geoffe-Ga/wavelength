@@ -13,8 +13,9 @@ python3 -m venv .venv
 echo "📦 Activating virtual environment..."
 source .venv/bin/activate
 
-echo "📚 Installing development dependencies..."
+echo "📚 Installing dependencies..."
 pip install --upgrade pip
+pip install -r backend/requirements.txt
 pip install -r backend/requirements-dev.txt
 
 echo "✅ Installing pre-commit hooks..."

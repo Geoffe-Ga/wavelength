@@ -30,6 +30,7 @@ repos:
     hooks:
       - id: mypy
         args: ["--python-version=3.13"]
+        additional_dependencies: [fastapi]
 
   - repo: local
     hooks:
