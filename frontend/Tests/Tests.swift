@@ -1,14 +1,14 @@
 //
-//  WavelengthWatchApp_Watch_AppTests.swift
-//  WavelengthWatchApp Watch AppTests
+//  Tests.swift
+//  WavelengthWatchApp Tests
 //
 //  Created by Geoff Gallinger on 8/20/25.
 //
 
 import XCTest
-@testable import WavelengthWatchApp_Watch_App
+@testable import WavelengthWatchApp
 
-final class WavelengthWatchApp_Watch_AppTests: XCTestCase {
+final class Tests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

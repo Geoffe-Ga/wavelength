@@ -1,13 +1,12 @@
 //
-//  WavelengthWatchApp_Watch_AppUITestsLaunchTests.swift
-//  WavelengthWatchApp Watch AppUITests
+//  UITestsLaunchTests.swift
+//  UITests
 //
 //  Created by Geoff Gallinger on 8/20/25.
-//
 
 import XCTest
 
-final class WavelengthWatchApp_Watch_AppUITestsLaunchTests: XCTestCase {
+class UITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

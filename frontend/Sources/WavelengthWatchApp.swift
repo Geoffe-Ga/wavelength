@@ -1,6 +1,6 @@
 //
-//  WavelengthWatchAppApp.swift
-//  WavelengthWatchApp Watch App
+//  WavelengthWatchApp.swift
+//  WavelengthWatchApp
 //
 //  Created by Geoff Gallinger on 8/20/25.
 //

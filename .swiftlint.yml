@@ -17,6 +17,7 @@ opt_in_rules:
   - first_where
   - force_unwrapping
   - unowned_variable_capture
+  - static_over_final_class
 
 disabled_rules:
   - line_length
