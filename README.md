@@ -15,3 +15,4 @@ git clone https://github.com/Geoffe-Ga/wavelength.git
 cd wavelength
 chmod +x dev-setup.sh
 ./dev-setup.sh
+```
