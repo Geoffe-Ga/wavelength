@@ -91,7 +91,7 @@ jobs:
             WATCHOS_DEPLOYMENT_TARGET=11.2 \
             CODE_SIGNING_ALLOWED=NO \
             clean build | tee build-release.log
-      
+
       - name: Upload build logs
         if: always()
         uses: actions/upload-artifact@v4
