@@ -37,6 +37,7 @@ repos:
       - id: swiftlint
         name: SwiftLint
         entry: swiftlint
+        args: ["lint", "--strict"]
         language: system
         types: [swift]
         additional_dependencies: []
