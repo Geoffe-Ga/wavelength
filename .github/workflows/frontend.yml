@@ -26,7 +26,7 @@ jobs:
       - name: Select Xcode 16
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16'
+          xcode-version: '16.4'
 
       - name: Install watchOS platforms
         run: |
@@ -68,7 +68,6 @@ jobs:
             -scheme "$SCHEME" \
             -showdestinations
 
-      # Build the watch-only app for a generic watchOS simulator.
       - name: Build (Debug)
         run: |
           set -euo pipefail
@@ -76,7 +75,6 @@ jobs:
             -project frontend/WavelengthWatchApp.xcodeproj \
             -scheme "WavelengthWatchApp Watch App" \
             -configuration Debug \
-            -sdk watchsimulator \
             -destination 'generic/platform=watchOS Simulator' \
             WATCHOS_DEPLOYMENT_TARGET=11.2 \
             CODE_SIGNING_ALLOWED=NO \
@@ -89,12 +87,11 @@ jobs:
             -project frontend/WavelengthWatchApp.xcodeproj \
             -scheme "WavelengthWatchApp Watch App" \
             -configuration Release \
-            -sdk watchsimulator \
             -destination 'generic/platform=watchOS Simulator' \
             WATCHOS_DEPLOYMENT_TARGET=11.2 \
             CODE_SIGNING_ALLOWED=NO \
             clean build | tee build-release.log
-
+      
       - name: Upload build logs
         if: always()
         uses: actions/upload-artifact@v4
