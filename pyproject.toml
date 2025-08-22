@@ -9,7 +9,7 @@ line_length = 88
 [tool.ruff]
 line-length = 88
 target-version = "py312"
-lint.extend-select = ["E", "F", "W", "I", "D", "UP", "B", "SIM"]
+lint.extend-select = ["E", "F", "W", "I", "D", "UP", "B", "SIM", "S"]
 lint.ignore = ["D203", "D213"]
 fix = true
 
@@ -18,8 +18,6 @@ addopts = "-q --strict-markers --disable-warnings --maxfail=1 --cov=."
 testpaths = ["backend/tests"]
 python_files = "test_*.py"
 pythonpath = ["."]
-
-
 [tool.coverage.run]
 branch = true
 source = ["."]
