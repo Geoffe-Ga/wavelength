@@ -1,10 +1,16 @@
 #!/bin/bash
 
-# Install SwiftLint
-if ! command -v swiftlint &> /dev/null
-then
-    echo "Installing SwiftLint via Homebrew..."
-    brew install swiftlint
+# Install SwiftLint if not already installed
+if ! command -v swiftlint &> /dev/null; then
+    echo "Installing SwiftLint..."
+    if command -v brew &> /dev/null; then
+        brew install swiftlint
+    else
+        curl -L -o swiftlint_linux.zip https://github.com/realm/SwiftLint/releases/download/0.59.1/swiftlint_linux.zip
+        unzip -o swiftlint_linux.zip swiftlint -d swiftlint_bin
+        install swiftlint_bin/swiftlint /usr/local/bin
+        rm -rf swiftlint_bin swiftlint_linux.zip
+    fi
 fi
 
 echo "🔧 Creating virtual environment..."

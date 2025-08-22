@@ -39,4 +39,3 @@ repos:
         entry: swiftlint
         language: system
         types: [swift]
-        additional_dependencies: []

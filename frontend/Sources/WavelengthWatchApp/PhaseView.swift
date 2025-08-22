@@ -1,3 +1,6 @@
+// This view depends on SwiftUI. Wrap it so Linux builds succeed even when
+// SwiftUI isn't present.
+#if canImport(SwiftUI)
 import SwiftUI
 
 /// View for a single phase. Tapping the phase name fetches recommendations
@@ -51,3 +54,4 @@ private struct PhaseResponse: Decodable {
 #Preview {
     PhaseView(phase: "Restoration")
 }
+#endif
